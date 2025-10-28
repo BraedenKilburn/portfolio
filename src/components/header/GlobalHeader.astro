@@ -1,16 +1,17 @@
 ---
-import ThemeToggle from '@/components/header/ThemeToggle.astro'
+import Button from "@/components/Button.astro";
+import ThemeToggle from "@/components/header/ThemeToggle.astro";
 ---
 
 <header>
   <h1>Braeden Kilburn</h1>
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-      <li><a href="/projects">Projects</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/contact">Contact</a></li>
+      <li><Button href="/" variant="ghost">Home</Button></li>
+      <li><Button href="/about" variant="ghost">About</Button></li>
+      <li><Button href="/projects" variant="ghost">Projects</Button></li>
+      <li><Button href="/blog" variant="ghost">Blog</Button></li>
+      <li><Button href="/contact" variant="ghost">Contact</Button></li>
     </ul>
   </nav>
   <div class="controls">
@@ -24,28 +25,28 @@ import ThemeToggle from '@/components/header/ThemeToggle.astro'
 </header>
 
 <script is:inline>
-  const menuToggle = document.querySelector('.menu-toggle')
-  const nav = document.querySelector('nav')
-  const header = document.querySelector('header')
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("nav");
+  const header = document.querySelector("header");
 
-  menuToggle?.addEventListener('click', () => {
-    nav?.classList.toggle('open')
-    menuToggle.classList.toggle('open')
-  })
+  menuToggle?.addEventListener("click", () => {
+    nav?.classList.toggle("open");
+    menuToggle.classList.toggle("open");
+  });
 
-  nav?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('open')
-      menuToggle?.classList.remove('open')
-    })
-  })
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      nav.classList.remove("open");
+      menuToggle?.classList.remove("open");
+    });
+  });
 
-  document.addEventListener('click', (e) => {
+  document.addEventListener("click", (e) => {
     if (!header?.contains(e.target)) {
-      nav?.classList.remove('open')
-      menuToggle?.classList.remove('open')
+      nav?.classList.remove("open");
+      menuToggle?.classList.remove("open");
     }
-  })
+  });
 </script>
 
 <style>
@@ -80,11 +81,6 @@ import ThemeToggle from '@/components/header/ThemeToggle.astro'
 
           &:hover {
             text-decoration: none;
-            background-color: light-dark(
-              rgba(100, 100, 100, 0.1),
-              rgba(255, 255, 255, 0.1)
-            );
-            transition: all 0.3s ease;
           }
         }
       }

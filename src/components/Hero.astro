@@ -1,22 +1,22 @@
 ---
-import { Image } from 'astro:assets'
-import cartoonImage from '@/assets/cartoon-braeden.png'
+import { Image } from "astro:assets";
+import cartoonImage from "@/assets/cartoon-braeden.png";
 
 interface Props {
-  greeting?: string
-  name?: string
-  description?: string
-  image?: ImageMetadata
-  imageAlt?: string
+  greeting?: string;
+  name?: string;
+  description?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
 }
 
 const {
   greeting = "Hey, I'm",
-  name = 'Braeden',
+  name = "Braeden",
   description = "I'm a full-stack developer passionate about web development and design",
   image = cartoonImage,
-  imageAlt = 'Cartoon illustration of Braeden',
-} = Astro.props
+  imageAlt = "Cartoon illustration of Braeden",
+} = Astro.props;
 ---
 
 <section class="hero">
@@ -37,7 +37,7 @@ const {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    margin: 4rem 0;
+    margin: 2rem 0 4rem;
 
     h1 {
       font-size: clamp(2rem, 5vw, 3.5rem);

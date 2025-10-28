@@ -1,13 +1,23 @@
 ---
-import Layout from '@/layouts/Layout.astro'
-import Hero from '@/components/Hero.astro'
-import FeaturedProjects from '@/components/FeaturedProjects.astro'
-
-import { getCollection } from 'astro:content'
-const projects = await getCollection('projects')
+import Layout from "@/layouts/Layout.astro";
+import Hero from "@/components/Hero.astro";
+import FeaturedProjects from "@/components/FeaturedProjects.astro";
 ---
 
 <Layout>
-  <Hero />
-  <FeaturedProjects projects={projects} />
+  <main>
+    <Hero />
+    <FeaturedProjects heading="Featured Projects" />
+  </main>
 </Layout>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    min-height: 92vh;
+  }
+</style>
