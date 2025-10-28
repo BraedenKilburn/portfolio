@@ -1,23 +1,20 @@
 ---
 import Button from "@/components/Button.astro";
-interface Props {
-  heading?: string;
-  summary?: string;
-  moreLink?: string;
-}
-
-const {
-  heading = "About Me",
-  summary = `I'm a developer who loves crafting intuitive, performant web experiences that bring design and engineering together. My background in front‑end development gives me a strong eye for detail, while my full‑stack experience helps me create reliable, scalable solutions.`,
-  moreLink = "/about",
-} = Astro.props;
 ---
 
 <section class="about">
   <div class="about-content">
-    <h2>{heading}</h2>
-    <p>{summary}</p>
-    {moreLink && <Button variant="secondary">Learn More</Button>}
+    <h2>About Me</h2>
+    <p>
+      I'm a developer who loves crafting intuitive, performant web experiences
+      that bring design and engineering together. My background in front‑end
+      development gives me a strong eye for detail, while my full‑stack
+      experience helps me create reliable, scalable solutions.
+    </p>
+    <div class="ctas">
+      <Button href="/about" variant="secondary"> Learn More </Button>
+      <Button href="/contact"> Get in Touch </Button>
+    </div>
   </div>
 </section>
 
@@ -44,6 +41,11 @@ const {
         font-size: 1.1rem;
         max-width: 65ch;
         margin: 0 auto;
+      }
+
+      .ctas {
+        display: flex;
+        gap: 1rem;
       }
     }
   }
