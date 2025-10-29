@@ -1,0 +1,112 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  experience: CollectionEntry<"experience">;
+}
+
+const { title, company, duration, location, responsibilities } =
+  Astro.props.experience.data;
+---
+
+<div class="experience-item">
+  <div class="experience-header">
+    <h3>{title}</h3>
+    <span class="company">{company}</span>
+    <span class="duration">{duration}</span>
+  </div>
+  <p class="location">{location}</p>
+  <ul class="responsibilities">
+    {responsibilities.map((responsibility) => <li>{responsibility}</li>)}
+  </ul>
+</div>
+
+<style>
+  .experience-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .experience-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+        color: var(--text-primary);
+      }
+
+      .company {
+        font-weight: 600;
+        color: var(--color-accent);
+        font-size: 1.1rem;
+      }
+
+      .duration {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        margin-left: auto;
+      }
+    }
+
+    .location {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .responsibilities {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0;
+
+      li {
+        position: relative;
+        padding-left: 1.5rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+
+        &::before {
+          content: "▸";
+          position: absolute;
+          left: 0;
+          color: var(--color-accent);
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .experience-item {
+      padding: 1.5rem;
+
+      .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .duration {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+</style>

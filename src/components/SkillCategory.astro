@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  skillCategory: CollectionEntry<"skills">;
+}
+
+const { category, skills } = Astro.props.skillCategory.data;
+---
+
+<div class="skill-category">
+  <h3>{category}</h3>
+  <ul>
+    {skills.map((skill) => <li>{skill}</li>)}
+  </ul>
+</div>
+
+<style>
+  .skill-category {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+
+    h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--color-accent);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        padding: 0.5rem 0;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border-color);
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+</style>

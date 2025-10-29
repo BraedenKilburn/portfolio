@@ -1,0 +1,93 @@
+---
+import GithubIcon from "@/assets/github.svg";
+import LinkedinIcon from "@/assets/linkedin.svg";
+import MailIcon from "@/assets/mail.svg";
+
+interface Props {
+  label: "GitHub" | "LinkedIn" | "Email";
+  href: string;
+  description?: string;
+}
+
+const { label, href, description } = Astro.props;
+
+const socialIcons = {
+  GitHub: GithubIcon,
+  LinkedIn: LinkedinIcon,
+  Email: MailIcon,
+};
+const IconComponent = socialIcons[label as keyof typeof socialIcons] || null;
+---
+
+<a href={href} class="social-card" target="_blank" rel="noopener noreferrer">
+  <div class="social-icon">
+    {IconComponent && <IconComponent />}
+  </div>
+  <div class="social-content">
+    <h3>{label}</h3>
+    <p>
+      {
+        description ||
+          (label === "Email"
+            ? "Send me a direct message"
+            : `Connect with me on ${label}`)
+      }
+    </p>
+  </div>
+</a>
+
+<style>
+  .social-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--color-accent);
+      border-radius: 8px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .social-content {
+      text-align: left;
+
+      h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0 0 0.25rem 0;
+        color: var(--text-primary);
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .social-card {
+      padding: 1rem;
+    }
+  }
+</style>

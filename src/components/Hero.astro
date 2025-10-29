@@ -1,34 +1,25 @@
 ---
 import { Image } from "astro:assets";
 import cartoonImage from "@/assets/cartoon-braeden.png";
-
-interface Props {
-  greeting?: string;
-  name?: string;
-  description?: string;
-  image?: ImageMetadata;
-  imageAlt?: string;
-}
-
-const {
-  greeting = "Hey, I'm",
-  name = "Braeden",
-  description = "I'm a full-stack developer passionate about web development and design",
-  image = cartoonImage,
-  imageAlt = "Cartoon illustration of Braeden",
-} = Astro.props;
+import Button from "@/components/Button.astro";
 ---
 
 <section class="hero">
   <div class="content">
     <h1>
-      {greeting}
-      <span class="name">{name}!</span>
+      Hey, I'm
+      <span class="name">Braeden!</span>
     </h1>
-    <p>{description}</p>
+    <p>
+      I'm a full-stack developer passionate about web development and design
+    </p>
+    <div class="ctas">
+      <Button href="/about">Learn More</Button>
+      <Button href="/contact" variant="secondary">Get in Touch</Button>
+    </div>
   </div>
   <div class="image">
-    <Image src={image} alt={imageAlt} />
+    <Image src={cartoonImage} alt="Cartoon illustration of Braeden" />
   </div>
 </section>
 
@@ -52,7 +43,12 @@ const {
     p {
       font-size: 1.125rem;
       line-height: 1.6;
-      color: var(--text-secondary);
+      color: var(--text-muted);
+    }
+
+    .ctas {
+      display: flex;
+      gap: 1rem;
     }
 
     .image {

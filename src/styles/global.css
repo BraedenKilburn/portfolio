@@ -94,6 +94,11 @@
   --shadow-sm: light-dark(var(--light-shadow-sm), var(--dark-shadow-sm));
   --shadow-md: light-dark(var(--light-shadow-md), var(--dark-shadow-md));
   --shadow-lg: light-dark(var(--light-shadow-lg), var(--dark-shadow-lg));
+
+  /* Scrollbar variables */
+  --sb-track-color: var(--bg-tertiary);
+  --sb-thumb-color: var(--color-accent);
+  --sb-size: 8px;
 }
 
 body {
@@ -126,6 +131,28 @@ body {
 
   &.dark-mode img {
     filter: brightness(0.8) contrast(1.2);
+  }
+}
+
+/* Scrollbar styles */
+body::-webkit-scrollbar {
+  width: var(--sb-size)
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 20px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
   }
 }
 
