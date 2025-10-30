@@ -2,13 +2,22 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/Hero.astro";
 import FeaturedProjects from "@/components/FeaturedProjects.astro";
-import AboutSection from "@/components/AboutSection.astro";
 ---
 
 <Layout>
   <main>
     <Hero />
-    <AboutSection />
+    <section class="about">
+      <div class="about-content">
+        <h2>About Me</h2>
+        <p>
+          I'm a developer who loves crafting intuitive, performant web
+          experiences that bring design and engineering together. My background
+          in front-end development gives me a strong eye for detail, while my
+          full-stack experience helps me create reliable, scalable solutions.
+        </p>
+      </div>
+    </section>
     <FeaturedProjects heading="Featured Projects" />
   </main>
 </Layout>
@@ -21,5 +30,75 @@ import AboutSection from "@/components/AboutSection.astro";
     justify-content: center;
     gap: 2rem;
     min-height: 92vh;
+
+    .about {
+      margin: 0 1rem 4rem;
+      max-width: 800px;
+
+      .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        text-align: center;
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        p {
+          color: var(--text-muted);
+          line-height: 1.7;
+          font-size: 1.1rem;
+          max-width: 65ch;
+          margin: 0 auto;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin: 1rem 0;
+
+          > * {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+          }
+        }
+
+        .ctas {
+          display: flex;
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .about-content {
+          .social-links {
+            flex-direction: column;
+            align-items: center;
+
+            > * {
+              width: 100%;
+              max-width: 400px;
+            }
+          }
+
+          .ctas {
+            flex-direction: column;
+            align-items: center;
+
+            > * {
+              width: 100%;
+              max-width: 200px;
+            }
+          }
+        }
+      }
+    }
   }
 </style>
