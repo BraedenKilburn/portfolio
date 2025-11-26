@@ -1,0 +1,80 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<ul class:list={['christmas-lights', className]} aria-hidden="true">
+  {Array.from({ length: 30 }).map(() => <li class="bulb" />)}
+</ul>
+
+<style>
+  .christmas-lights {
+    position: absolute;
+    bottom: -12px;
+    left: 32px;
+    right: 32px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 90;
+  }
+
+  .bulb {
+    width: 8px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ccc;
+    animation: twinkle 2s infinite both;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Color Rotation */
+  .bulb:nth-child(4n + 1) {
+    background: #ef4444;
+    box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+  }
+  .bulb:nth-child(4n + 2) {
+    background: #eab308;
+    box-shadow: 0 0 12px rgba(234, 179, 8, 0.8);
+  }
+  .bulb:nth-child(4n + 3) {
+    background: #22c55e;
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+  }
+  .bulb:nth-child(4n + 4) {
+    background: #3b82f6;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+  }
+
+  /* Randomize timing */
+  .bulb:nth-child(2n) {
+    animation-duration: 1.5s;
+  }
+  .bulb:nth-child(3n) {
+    animation-delay: 0.5s;
+  }
+
+  @media (max-width: 768px) {
+    .bulb:nth-child(2n) {
+      display: none;
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+</style>

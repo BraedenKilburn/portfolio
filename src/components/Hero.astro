@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
-import cartoonImage from "@/assets/cartoon-braeden.png";
-import Button from "@/components/Button.astro";
+import { Image } from 'astro:assets'
+import christmasImage from '@/assets/christmas-braeden.png'
+import Button from '@/components/Button.astro'
 ---
 
 <section class="hero">
@@ -19,7 +19,10 @@ import Button from "@/components/Button.astro";
     </div>
   </div>
   <div class="image">
-    <Image src={cartoonImage} alt="Cartoon illustration of Braeden" />
+    <Image
+      src={christmasImage}
+      alt="Christmas-themed illustration of Braeden"
+    />
   </div>
 </section>
 
@@ -63,6 +66,7 @@ import Button from "@/components/Button.astro";
 
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
+      gap: 1rem;
       text-align: center;
 
       .image {

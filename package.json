@@ -11,7 +11,7 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
     "@fontsource-variable/atkinson-hyperlegible-next": "^5.2.6",
-    "astro": "^5.15.3",
+    "astro": "^5.16.0",
     "modern-normalize": "^3.0.1",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1"
