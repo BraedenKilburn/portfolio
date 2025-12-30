@@ -1,0 +1,63 @@
+---
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<ul class:list={['new-years-lights', className]} aria-hidden="true">
+  {Array.from({ length: 30 }).map(() => <li class="bulb" />)}
+</ul>
+
+<style>
+  .new-years-lights {
+    position: absolute;
+    bottom: -12px;
+    left: 32px;
+    right: 32px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 90;
+  }
+
+  .bulb {
+    width: 8px;
+    height: 12px;
+    border-radius: 50%;
+    animation: twinkle 2s infinite both;
+
+    background: #ffd700;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+  }
+
+  /* Randomize timing */
+  .bulb:nth-child(2n) {
+    animation-duration: 1.5s;
+  }
+  .bulb:nth-child(3n) {
+    animation-delay: 0.5s;
+  }
+
+  @media (max-width: 768px) {
+    .bulb:nth-child(2n) {
+      display: none;
+    }
+  }
+
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+</style>
