@@ -1,17 +1,15 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Button from "@/components/Button.astro";
-import ExperienceItem from "@/components/ExperienceItem.astro";
-import SkillCategory from "@/components/SkillCategory.astro";
-import { getCollection } from "astro:content";
+import Layout from '@/layouts/Layout.astro'
+import Button from '@/components/Button.astro'
+import ExperienceItem from '@/components/ExperienceItem.astro'
+import SkillCategory from '@/components/SkillCategory.astro'
+import { getCollection } from 'astro:content'
 
-const experienceEntries = await getCollection("experience");
-const experience = experienceEntries.sort(
-  (a, b) => a.data.order - b.data.order,
-);
+const experienceEntries = await getCollection('experience')
+const experience = experienceEntries.sort((a, b) => a.data.order - b.data.order)
 
-const skillsEntries = await getCollection("skills");
-const skills = skillsEntries.sort((a, b) => a.data.order - b.data.order);
+const skillsEntries = await getCollection('skills')
+const skills = skillsEntries.sort((a, b) => a.data.order - b.data.order)
 ---
 
 <Layout>
@@ -20,8 +18,10 @@ const skills = skillsEntries.sort((a, b) => a.data.order - b.data.order);
       <h1>About Me</h1>
       <p class="intro">
         I'm a passionate full-stack developer with over 5 years of experience
-        building intuitive, performant web applications. I love bringing design
-        and engineering together to create solutions that make a real impact.
+        building web applications that users actually enjoy using, with
+        thoughtful interactions, lightning-fast load times, and seamless
+        functionality. I love bringing design and engineering together to create
+        solutions that make a real impact.
       </p>
     </section>
 
