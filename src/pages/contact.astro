@@ -1,11 +1,11 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Button from "@/components/Button.astro";
-import SocialCard from "@/components/SocialCard.astro";
-import { getCollection } from "astro:content";
+import Layout from '@/layouts/Layout.astro'
+import Button from '@/components/Button.astro'
+import SocialCard from '@/components/SocialCard.astro'
+import { getCollection } from 'astro:content'
 
-const socialsEntries = await getCollection("socials");
-const socials = socialsEntries.map((entry) => entry.data);
+const socialsEntries = await getCollection('socials')
+const socials = socialsEntries.map((entry) => entry.data)
 ---
 
 <Layout>
@@ -32,11 +32,7 @@ const socials = socialsEntries.map((entry) => entry.data);
             <SocialCard
               label={social.label}
               href={social.href}
-              description={
-                social.label === "Email"
-                  ? "Send me a direct message"
-                  : `Connect with me on ${social.label}`
-              }
+              description={social.description}
             />
           ))
         }

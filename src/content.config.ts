@@ -22,6 +22,7 @@ const socials = defineCollection({
   schema: z.object({
     label: z.enum(["GitHub", "LinkedIn", "Email"]),
     href: z.string(),
+    description: z.string().optional(),
   }),
 });
 

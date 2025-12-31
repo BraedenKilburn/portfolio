@@ -1,37 +1,39 @@
 ---
-import GithubIcon from "@/assets/github.svg";
-import LinkedinIcon from "@/assets/linkedin.svg";
-import MailIcon from "@/assets/mail.svg";
+import GithubIcon from '@/assets/github.svg'
+import LinkedinIcon from '@/assets/linkedin.svg'
+import MailIcon from '@/assets/mail.svg'
 
 interface Props {
-  label: "GitHub" | "LinkedIn" | "Email";
-  href: string;
-  description?: string;
+  label: 'GitHub' | 'LinkedIn' | 'Email'
+  href: string
+  description?: string
 }
 
-const { label, href, description } = Astro.props;
+const { label, href, description } = Astro.props
 
 const socialIcons = {
   GitHub: GithubIcon,
   LinkedIn: LinkedinIcon,
   Email: MailIcon,
-};
-const IconComponent = socialIcons[label as keyof typeof socialIcons] || null;
+}
+const IconComponent = socialIcons[label as keyof typeof socialIcons] || null
+
+const isMailto = href.startsWith('mailto:')
 ---
 
-<a href={href} class="social-card" target="_blank" rel="noopener noreferrer">
+<a
+  href={href}
+  class="social-card"
+  target={isMailto ? undefined : '_blank'}
+  rel={isMailto ? undefined : 'noopener noreferrer'}
+>
   <div class="social-icon">
     {IconComponent && <IconComponent />}
   </div>
   <div class="social-content">
     <h3>{label}</h3>
     <p>
-      {
-        description ||
-          (label === "Email"
-            ? "Send me a direct message"
-            : `Connect with me on ${label}`)
-      }
+      {description || `Connect with me on ${label}`}
     </p>
   </div>
 </a>

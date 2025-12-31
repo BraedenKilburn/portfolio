@@ -6,5 +6,10 @@
   "linkedin": {
     "label": "LinkedIn",
     "href": "https://linkedin.com/in/BraedenKilburn"
+  },
+  "email": {
+    "label": "Email",
+    "href": "mailto:him@braedenkilburn.com",
+    "description": "him@braedenkilburn.com"
   }
 }
