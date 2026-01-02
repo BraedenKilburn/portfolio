@@ -1,14 +1,17 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import Button from "@/components/Button.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
-const projects = (await getCollection("projects")).sort(
+import { getCollection } from 'astro:content'
+import Layout from '@/layouts/Layout.astro'
+import Button from '@/components/Button.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+const projects = (await getCollection('projects')).sort(
   (a, b) => b.data.priority - a.data.priority,
-);
+)
 ---
 
-<Layout>
+<Layout
+  title="Projects - Braeden Kilburn"
+  description="A collection of projects showcasing front-end architecture, full-stack integration, and developer experience. Each project highlights different aspects of my workflow and technical expertise."
+>
   <main class="projects-page">
     <h1>Projects</h1>
     <p class="intro">

@@ -1,18 +1,47 @@
 ---
-import "@/styles/global.css";
-import "@fontsource-variable/atkinson-hyperlegible-next";
+import '@/styles/global.css'
+import '@fontsource-variable/atkinson-hyperlegible-next'
 
-import GlobalHeader from "@/components/header/GlobalHeader.astro";
-import GlobalFooter from "@/components/GlobalFooter.astro";
+import GlobalHeader from '@/components/header/GlobalHeader.astro'
+import GlobalFooter from '@/components/GlobalFooter.astro'
+
+interface Props {
+  title?: string
+  description?: string
+}
+
+const {
+  title = 'Braeden Kilburn - Portfolio',
+  description = 'Full-stack developer based in Las Vegas crafting web experiences that feel effortless to navigate and respond instantly to user interactions.',
+} = Astro.props
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Essential Metadata -->
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.url} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Aesthetics & Tech -->
     <meta name="generator" content={Astro.generator} />
     <meta
       name="theme-color"
@@ -24,8 +53,7 @@ import GlobalFooter from "@/components/GlobalFooter.astro";
       media="(prefers-color-scheme: dark)"
       content="#598392"
     />
-    <link rel="canonical" href={Astro.url} />
-    <title>Braeden Kilburn - Portfolio</title>
+    <link rel="sitemap" href="/sitemap-index.xml" />
   </head>
   <body>
     <GlobalHeader />

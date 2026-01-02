@@ -12,7 +12,10 @@ const skillsEntries = await getCollection('skills')
 const skills = skillsEntries.sort((a, b) => a.data.order - b.data.order)
 ---
 
-<Layout>
+<Layout
+  title="About Me - Braeden Kilburn"
+  description="Passionate full-stack developer with over 5 years of experience building web applications. Learn about my professional experience, technical skills, and what drives me beyond code."
+>
   <main class="about-page">
     <section class="hero">
       <h1>About Me</h1>
