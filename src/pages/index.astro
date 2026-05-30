@@ -9,14 +9,30 @@ import FeaturedProjects from '@/components/FeaturedProjects.astro'
     <Hero />
     <section class="about">
       <div class="about-content">
-        <h2>About Me</h2>
-        <p>
-          I'm a developer based in Las Vegas who loves crafting web experiences
-          that feel effortless to navigate and respond instantly to user
-          interactions, bringing design and engineering together. My background
-          in front-end development gives me a strong eye for detail, while my
-          full-stack experience helps me create reliable, scalable solutions.
-        </p>
+        <div>
+          <h2>About Me</h2>
+          <p>
+            I'm a developer based in Las Vegas who loves crafting web
+            experiences that feel effortless to navigate and respond instantly
+            to user interactions. My front-end focus gives me a strong eye for
+            detail, while my full-stack experience helps me build reliable
+            solutions end to end.
+          </p>
+        </div>
+        <ul class="values">
+          <li>
+            <strong>Fast-feeling interfaces</strong>
+            <span>Responsive layouts and interactions that stay out of the user's way.</span>
+          </li>
+          <li>
+            <strong>Maintainable component systems</strong>
+            <span>Clear structure that makes products easier to extend.</span>
+          </li>
+          <li>
+            <strong>Details that reduce friction</strong>
+            <span>Small decisions that make workflows feel simpler.</span>
+          </li>
+        </ul>
       </div>
     </section>
     <FeaturedProjects heading="Featured Projects" />
@@ -34,17 +50,17 @@ import FeaturedProjects from '@/components/FeaturedProjects.astro'
 
     .about {
       margin: 0 1rem 4rem;
-      max-width: 800px;
+      width: 100%;
 
       .about-content {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
         align-items: center;
-        gap: 1.5rem;
-        text-align: center;
+        gap: 2.5rem;
 
         h2 {
           font-size: 2rem;
+          margin-bottom: 1rem;
         }
 
         p {
@@ -52,51 +68,46 @@ import FeaturedProjects from '@/components/FeaturedProjects.astro'
           line-height: 1.7;
           font-size: 1.1rem;
           max-width: 65ch;
-          margin: 0 auto;
+          margin: 0;
         }
 
-        .social-links {
+        .values {
           display: flex;
+          flex-direction: column;
           gap: 1rem;
-          flex-wrap: wrap;
-          justify-content: center;
-          margin: 1rem 0;
+          padding: 0;
+          margin: 0;
+          list-style: none;
 
-          > * {
-            flex: 1;
-            min-width: 200px;
-            max-width: 300px;
+          li {
+            flex-direction: column;
+            display: flex;
+            gap: 0.25rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            strong {
+              color: var(--text-primary);
+            }
+
+            span {
+              color: var(--text-muted);
+            }
           }
-        }
-
-        .ctas {
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
-          justify-content: center;
         }
       }
 
       @media (max-width: 768px) {
         .about-content {
-          .social-links {
-            flex-direction: column;
-            align-items: center;
+          grid-template-columns: 1fr;
+          text-align: center;
 
-            > * {
-              width: 100%;
-              max-width: 400px;
-            }
-          }
-
-          .ctas {
-            flex-direction: column;
-            align-items: center;
-
-            > * {
-              width: 100%;
-              max-width: 200px;
-            }
+          p {
+            margin: 0 auto;
           }
         }
       }

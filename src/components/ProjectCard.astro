@@ -5,13 +5,15 @@ interface Props {
   project: CollectionEntry<"projects">;
 }
 
-const { title, description, tech, liveUrl, repoUrl } = Astro.props.project.data;
+const { title, description, tech, highlight, liveUrl, repoUrl } =
+  Astro.props.project.data;
 ---
 
 <article class="project-card">
   <div class="content">
     <h3>{title}</h3>
     <p class="description">{description}</p>
+    {highlight && <p class="highlight">{highlight}</p>}
 
     <ul class="tech-list">
       {tech.map((t) => <li>{t}</li>)}
@@ -39,14 +41,17 @@ const { title, description, tech, liveUrl, repoUrl } = Astro.props.project.data;
   .project-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    border-radius: 1rem;
+    border-top: 3px solid var(--color-accent);
+    border-radius: var(--radius-lg);
     padding: 1.5rem;
     transition:
       box-shadow 0.2s ease,
+      border-color 0.2s ease,
       transform 0.2s ease;
 
     &:hover {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: color-mix(in srgb, var(--color-accent) 38%, var(--border-color));
+      box-shadow: var(--shadow-md);
       transform: translateY(-3px);
     }
 
@@ -57,13 +62,21 @@ const { title, description, tech, liveUrl, repoUrl } = Astro.props.project.data;
       height: 100%;
 
       h3 {
-        text-align: center;
         font-size: 1.25rem;
       }
 
       .description {
         color: var(--text-secondary);
         line-height: 1.6;
+      }
+
+      .highlight {
+        color: var(--text-muted);
+        border-left: 2px solid var(--color-accent);
+        padding-left: 0.75rem;
+        margin: 0.25rem 0;
+        font-size: 0.95rem;
+        line-height: 1.55;
       }
 
       .tech-list {
@@ -77,9 +90,9 @@ const { title, description, tech, liveUrl, repoUrl } = Astro.props.project.data;
         li {
           background: var(--bg-tertiary);
           color: var(--text-muted);
-          padding: 0.25rem 0.75rem;
+          padding: 0.2rem 0.65rem;
           border-radius: 9999px;
-          font-size: 0.85rem;
+          font-size: 0.8rem;
         }
       }
 

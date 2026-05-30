@@ -1,21 +1,43 @@
 ---
 import Button from '@/components/Button.astro'
 import ThemeToggle from '@/components/header/ThemeToggle.astro'
+
+const pathname = Astro.url.pathname
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/contact', label: 'Contact' },
+]
+
+const isActive = (href: string) =>
+  href === '/' ? pathname === href : pathname.startsWith(href)
 ---
 
 <header>
   <h1><a href="/">Braeden Kilburn</a></h1>
   <nav>
     <ul>
-      <li><Button href="/" variant="ghost">Home</Button></li>
-      <li><Button href="/about" variant="ghost">About</Button></li>
-      <li><Button href="/projects" variant="ghost">Projects</Button></li>
-      <li><Button href="/contact" variant="ghost">Contact</Button></li>
+      {
+        navItems.map((item) => (
+          <li>
+            <Button
+              href={item.href}
+              variant="ghost"
+              ariaLabel={isActive(item.href) ? `${item.label}, current page` : undefined}
+            >
+              <span class={isActive(item.href) ? 'active' : undefined}>
+                {item.label}
+              </span>
+            </Button>
+          </li>
+        ))
+      }
     </ul>
   </nav>
   <div class="controls">
     <ThemeToggle />
-    <button class="menu-toggle" aria-label="Toggle menu">
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span>
       <span></span>
       <span></span>
@@ -31,12 +53,17 @@ import ThemeToggle from '@/components/header/ThemeToggle.astro'
   menuToggle?.addEventListener('click', () => {
     nav?.classList.toggle('open')
     menuToggle.classList.toggle('open')
+    menuToggle.setAttribute(
+      'aria-expanded',
+      menuToggle.classList.contains('open') ? 'true' : 'false',
+    )
   })
 
   nav?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => {
       nav.classList.remove('open')
       menuToggle?.classList.remove('open')
+      menuToggle?.setAttribute('aria-expanded', 'false')
     })
   })
 
@@ -44,6 +71,7 @@ import ThemeToggle from '@/components/header/ThemeToggle.astro'
     if (!header?.contains(e.target)) {
       nav?.classList.remove('open')
       menuToggle?.classList.remove('open')
+      menuToggle?.setAttribute('aria-expanded', 'false')
     }
   })
 </script>
@@ -81,7 +109,7 @@ import ThemeToggle from '@/components/header/ThemeToggle.astro'
     nav {
       ul {
         display: flex;
-        gap: 1rem;
+        gap: 0.35rem;
         list-style-type: none;
 
         a {
@@ -90,6 +118,14 @@ import ThemeToggle from '@/components/header/ThemeToggle.astro'
 
           &:hover {
             text-decoration: none;
+          }
+
+          .active {
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: var(--color-accent);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 0.35rem;
           }
         }
       }

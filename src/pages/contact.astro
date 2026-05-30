@@ -16,17 +16,15 @@ const socials = socialsEntries.map((entry) => entry.data)
     <section class="hero">
       <h1>Get in Touch</h1>
       <p class="intro">
-        Have a project, question, or just want to say hi? I'm always open to
-        interesting opportunities, collaborations, or just having a conversation
-        about technology and development.
+        Have a project, opportunity, or question? Reach out through one of the
+        channels below and I'll get back to you.
       </p>
     </section>
 
     <section class="contact-methods">
       <h2>Let's Connect</h2>
       <p class="subtitle">
-        The best way to reach me is through my professional channels below. I
-        typically respond within 24 hours.
+        The best way to reach me is through these professional channels.
       </p>
 
       <div class="social-links">
@@ -49,10 +47,8 @@ const socials = socialsEntries.map((entry) => entry.data)
         <div class="availability-content">
           <h3>Open to Opportunities</h3>
           <p>
-            I'm currently open to new opportunities, collaborations, and
-            interesting projects. Whether you're looking for a full-time
-            developer, freelance work, or just want to discuss technology, I'd
-            love to hear from you.
+            I'm open to frontend-focused roles, collaborations, and practical
+            web projects where thoughtful UI work matters.
           </p>
         </div>
       </div>
@@ -146,7 +142,7 @@ const socials = socialsEntries.map((entry) => entry.data)
       display: flex;
       align-items: center;
       gap: 1.5rem;
-      padding: 2rem;
+      padding: 1.5rem;
       background: var(--bg-secondary);
       border: 1px solid var(--border-color);
       border-radius: 12px;
@@ -177,6 +173,16 @@ const socials = socialsEntries.map((entry) => entry.data)
           line-height: 1.6;
           color: var(--text-secondary);
           margin: 0;
+        }
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .availability {
+      .availability-card {
+        .status-indicator.available {
+          animation: none;
         }
       }
     }

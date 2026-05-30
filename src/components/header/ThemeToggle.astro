@@ -3,19 +3,21 @@ import MoonStarsIcon from "@/assets/moon-stars-icon.svg";
 import LightModeIcon from "@/assets/light-mode-icon.svg";
 ---
 
-<button class="theme-toggle" aria-label="Toggle theme">
+<button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
   <LightModeIcon class="light-icon" />
   <MoonStarsIcon class="dark-icon" />
 </button>
 
 <script is:inline>
-  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  const themeToggle = document.querySelector(".theme-toggle");
 
   function applyTheme(isDark) {
     document.body.classList.toggle("dark-mode", isDark);
     localStorage.setItem("theme", isDark ? "dark" : "light");
+    themeToggle?.setAttribute("aria-pressed", String(isDark));
   }
 
+  const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
   const savedTheme = localStorage.getItem("theme");
   const isDark = savedTheme ? savedTheme === "dark" : prefersDarkScheme.matches;
   applyTheme(isDark);
@@ -23,16 +25,9 @@ import LightModeIcon from "@/assets/light-mode-icon.svg";
   if (!savedTheme) {
     prefersDarkScheme.addEventListener("change", (e) => applyTheme(e.matches));
   }
-</script>
-
-<script>
-  const themeToggle = document.querySelector(".theme-toggle");
-
   themeToggle?.addEventListener("click", () => {
     const isDarkNow = document.body.classList.contains("dark-mode");
-    const newIsDark = !isDarkNow;
-    document.body.classList.toggle("dark-mode", newIsDark);
-    localStorage.setItem("theme", newIsDark ? "dark" : "light");
+    applyTheme(!isDarkNow);
   });
 </script>
 
@@ -60,10 +55,21 @@ import LightModeIcon from "@/assets/light-mode-icon.svg";
       display: none;
     }
 
-    .dark-mode & {
+    &[aria-pressed="true"] {
       .light-icon {
         display: none;
       }
+
+      .dark-icon {
+        display: block;
+      }
+    }
+
+    :global(.dark-mode) & {
+      .light-icon {
+        display: none;
+      }
+
       .dark-icon {
         display: block;
       }
