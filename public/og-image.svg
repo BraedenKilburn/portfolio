@@ -1,0 +1,13 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#f7fbfd"/>
+  <rect x="56" y="56" width="1088" height="518" rx="32" fill="#ffffff" stroke="#d5e5ec" stroke-width="2"/>
+  <circle cx="1012" cy="172" r="88" fill="#d9eef5"/>
+  <circle cx="1036" cy="460" r="134" fill="#eaf5f8"/>
+  <path d="M86 480 C230 410 332 514 482 448 C641 379 750 394 908 318 C1018 265 1106 282 1144 300 L1144 574 L86 574 Z" fill="#e2f1f6"/>
+  <text x="104" y="174" fill="#102a35" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="72" font-weight="700">Braeden Kilburn</text>
+  <text x="108" y="250" fill="#0077b6" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="42" font-weight="700">Front-End Engineer</text>
+  <text x="108" y="336" fill="#365764" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="34">Vue • TypeScript • Astro • Web Apps</text>
+  <text x="108" y="402" fill="#4e6873" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="30">Las Vegas / Remote</text>
+  <rect x="108" y="460" width="372" height="54" rx="12" fill="#0077b6"/>
+  <text x="132" y="496" fill="#ffffff" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="25" font-weight="700">braedenkilburn.com</text>
+</svg>
