@@ -1,0 +1,113 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Button from '@/components/Button.astro'
+---
+
+<Layout
+  title="Scrum Poker Case Study | Braeden Kilburn"
+  description="Case study for Scrum Poker, a Vue and TypeScript planning poker app focused on fast team estimation sessions and clean facilitator workflows."
+>
+  <main class="case-study">
+    <p class="eyebrow">Case Study</p>
+    <h1>Scrum Poker</h1>
+    <p class="lede">
+      A planning poker app built with Vue, TypeScript, Bun, and DigitalOcean to
+      help teams run fast, clear estimation sessions.
+    </p>
+
+    <div class="actions">
+      <Button href="https://myscrumpoker.com" external>View Live</Button>
+      <Button href="https://github.com/BraedenKilburn/ScrumPoker" external variant="secondary">
+        View Code
+      </Button>
+    </div>
+
+    <section>
+      <h2>Problem</h2>
+      <p>
+        Planning meetings can slow down when estimation tools are clunky,
+        unclear, or overloaded. The goal was to create a focused experience
+        where facilitators can quickly start a session and participants can vote
+        without friction.
+      </p>
+    </section>
+
+    <section>
+      <h2>My Role</h2>
+      <p>
+        I designed and built the application experience, front-end architecture,
+        interaction states, and deployment path.
+      </p>
+    </section>
+
+    <section>
+      <h2>Technical Decisions</h2>
+      <ul>
+        <li>Used Vue and TypeScript for maintainable component-driven UI.</li>
+        <li>Used Bun to keep the development/runtime workflow lightweight.</li>
+        <li>Prioritized responsive layout and clear facilitator/participant flows.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Impact</h2>
+      <p>
+        This project demonstrates front-end architecture, full-stack product
+        context, deployment ownership, and the ability to turn a common team
+        workflow into a polished web app.
+      </p>
+    </section>
+
+    <section>
+      <h2>What I Would Improve Next</h2>
+      <ul>
+        <li>Add analytics around session completion and user flow drop-off.</li>
+        <li>Improve onboarding for first-time facilitators.</li>
+        <li>Add deeper accessibility testing for keyboard and screen-reader workflows.</li>
+      </ul>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .case-study {
+    max-width: 850px;
+    margin: 0 auto 4rem;
+    padding: 2rem 1rem;
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0.5rem 0 1rem;
+  }
+
+  .lede {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  section {
+    margin-top: 2.5rem;
+  }
+
+  section p,
+  section li {
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+</style>
