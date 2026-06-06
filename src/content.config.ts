@@ -15,6 +15,11 @@ const projects = defineCollection({
     highlight: z.string().optional(),
     liveUrl: z.string().optional(),
     repoUrl: z.string().optional(),
+    role: z.string().optional(),
+    problem: z.string().optional(),
+    impact: z.string().optional(),
+    challenge: z.string().optional(),
+    slug: z.string().optional(),
   }),
 });
 

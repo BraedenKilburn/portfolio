@@ -3,7 +3,14 @@ import Button from '@/components/Button.astro'
 import ThemeToggle from '@/components/header/ThemeToggle.astro'
 
 const pathname = Astro.url.pathname
-const navItems = [
+
+type NavItem = {
+  href: string
+  label: string
+  external?: boolean
+}
+
+const navItems: NavItem[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/projects', label: 'Projects' },
@@ -15,7 +22,7 @@ const isActive = (href: string) =>
 ---
 
 <header>
-  <h1><a href="/">Braeden Kilburn</a></h1>
+  <p class="site-title"><a href="/">Braeden Kilburn</a></p>
   <nav>
     <ul>
       {
@@ -24,6 +31,7 @@ const isActive = (href: string) =>
             <Button
               href={item.href}
               variant="ghost"
+              external={item.external}
               ariaLabel={isActive(item.href) ? `${item.label}, current page` : undefined}
             >
               <span class={isActive(item.href) ? 'active' : undefined}>
@@ -91,9 +99,10 @@ const isActive = (href: string) =>
     border-radius: 9999px;
     box-shadow: var(--shadow-sm);
 
-    h1 {
+    .site-title {
       font-size: 1.125rem;
       font-weight: 600;
+      margin: 0;
 
       a {
         color: inherit;

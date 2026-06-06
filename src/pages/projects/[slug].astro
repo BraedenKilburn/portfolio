@@ -1,0 +1,110 @@
+---
+import { getCollection, render } from 'astro:content'
+import Layout from '@/layouts/Layout.astro'
+import Button from '@/components/Button.astro'
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects', (project) => Boolean(project.data.slug))
+
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props
+const { Content } = await render(project)
+const { title, description, tech, liveUrl, repoUrl } = project.data
+---
+
+<Layout
+  title={`${title} Case Study | Braeden Kilburn`}
+  description={`Case study for ${title}. ${description}`}
+>
+  <main class="case-study">
+    <p class="eyebrow">Case Study</p>
+    <h1>{title}</h1>
+    <p class="lede">{description}</p>
+
+    <ul class="tech-list" aria-label={`${title} technologies`}>
+      {tech.map((item) => <li>{item}</li>)}
+    </ul>
+
+    <div class="actions">
+      {liveUrl && <Button href={liveUrl} external>View Live</Button>}
+      {
+        repoUrl && (
+          <Button href={repoUrl} external variant="secondary">
+            View Code
+          </Button>
+        )
+      }
+    </div>
+
+    <div class="content">
+      <Content />
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .case-study {
+    max-width: 850px;
+    margin: 0 auto 4rem;
+    padding: 2rem 1rem;
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0.5rem 0 1rem;
+  }
+
+  .lede {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    list-style: none;
+
+    li {
+      background: var(--bg-tertiary);
+      color: var(--text-muted);
+      padding: 0.2rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+    }
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  .content {
+    :global(h2) {
+      margin-top: 2.5rem;
+    }
+
+    :global(p),
+    :global(li) {
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+  }
+</style>
